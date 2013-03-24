@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/1359894848_playback_play.png</file>
+        <file>icons/1359894939_playback_stop.png</file>
+        <file>icons/1359894943_playback_pause.png</file>
+        <file>icons/1359895090_playback_rew.png</file>
+        <file>icons/1359895096_playback_ff.png</file>
+        <file>icons/1359895048_music.png</file>
+        <file>icons/1359895051_music.png</file>
+        <file>icons/1359895059_music.png</file>
+        <file>icons/1363519515_headphones.png</file>
+        <file>icons/1363519518_headphones.png</file>
+        <file>icons/1363519519_headphones.png</file>
+        <file>icons/1363513956_folder_open.png</file>
+        <file>icons/1364111382_folder_plus.png</file>
+    </qresource>
+</RCC>

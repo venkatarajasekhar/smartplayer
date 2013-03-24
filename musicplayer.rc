@@ -1,0 +1,39 @@
+#include <windows.h>
+#include "version.h"
+
+#ifdef RC_INVOKED
+
+#if DBG
+#define VER_DBG VS_FF_DEBUG
+#else
+#define VER_DBG 0
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     SP_MAJOR,SP_MINOR,SP_REV,SP_BUILD
+PRODUCTVERSION  1,0,0,0
+FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+FILEFLAGS       VS_FF_PRERELEASE
+FILEOS          VOS_NT
+FILETYPE        VFT_DLL
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",        SP_CompanyName
+            VALUE "FileDescription",    SP_FileDescription
+            VALUE "FileVersion",        SP_FileVersion
+            VALUE "InternalName",       SP_InternalName
+            VALUE "LegalCopyright",     SP_LegalCopyright
+            VALUE "OriginalFilename",   SP_OriginalFilename
+            VALUE "ProductName",        SP_ProductName
+            VALUE "ProductVersion",     SP_ProductVersion
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x040A,1200
+    END
+END
+#endif
