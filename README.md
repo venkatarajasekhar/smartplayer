@@ -1,6 +1,6 @@
 SmartPlayer
 ===========
-Reproductor multimedia ligero, escrito en C++ y basado en Qt, Phonon y QID3. Proyecto opensource, distribuido gratuitamente bajo la licencia BSD modificada (licencia BSD de 3 clausulas).
+SmartPlayer es un proyecto opensource para un reproductor multimedia ligero, escrito en C++ y basado en Qt, Phonon y QID3. SmartPlayer es distribuido gratuitamente bajo la licencia BSD modificada (licencia BSD de 3 clausulas).
 
 Características
 ---------------
@@ -18,11 +18,9 @@ Licencia
 >
 > 1. Redistributions of source code must retain the above copyright
 >    notice, this list of conditions and the following disclaimer.
->
 > 2. Redistributions in binary form must reproduce the above copyright
 >    notice, this list of conditions and the following disclaimer in the
 >    documentation and/or other materials provided with the distribution.
->
 > 3. Neither the name of the author nor the name of any other
 >    contributor may be used to endorse or promote products derived
 >    from this software without specific prior written permission.
