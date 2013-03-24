@@ -35,4 +35,5 @@ RESOURCES += \
 
 OTHER_FILES += \
     musicplayer.rc \
-    COPYING
+    COPYING \
+    README.md
