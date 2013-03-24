@@ -34,4 +34,5 @@ RESOURCES += \
     icons.qrc
 
 OTHER_FILES += \
-    musicplayer.rc
+    musicplayer.rc \
+    COPYING
