@@ -4,19 +4,25 @@ Reproductor multimedia ligero, escrito en C++ y basado en Qt, Phonon y QID3. Pro
 
 Características
 ---------------
++  Soporte para audio MP3, OGG y WMA
++  Soporte para video MP4 y WMV
++  Diseño simple y minimalista
 
 Licencia
 --------
-> Copyright (C) 2012, Felipe Cabrera
+> Copyright © 2013, Felipe Cabrera
 >
 > Redistribution and use in source and binary forms, with or without
 > modification, are permitted provided that the following conditions
 > are met:
+>
 > 1. Redistributions of source code must retain the above copyright
 >    notice, this list of conditions and the following disclaimer.
+>
 > 2. Redistributions in binary form must reproduce the above copyright
 >    notice, this list of conditions and the following disclaimer in the
 >    documentation and/or other materials provided with the distribution.
+>
 > 3. Neither the name of the author nor the name of any other
 >    contributor may be used to endorse or promote products derived
 >    from this software without specific prior written permission.

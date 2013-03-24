@@ -49,6 +49,15 @@ QStringList Playlist::getNameList()
 
 QString Playlist::convert(QString file)
 {
-    ID3_MP3_Frame frame(file);
-    return (frame.getArtist() + " - " + frame.getTitle());
+    if(QFileInfo(file).suffix() == "mp3" ||
+       QFileInfo(file).suffix() == "wma" ||
+       QFileInfo(file).suffix() == "ogg" ||
+       QFileInfo(file).suffix() == "MP3" ||
+       QFileInfo(file).suffix() == "WMA" ||
+       QFileInfo(file).suffix() == "OGG") {
+        ID3_MP3_Frame frame(file);
+        return (frame.getArtist() + " - " + frame.getTitle());
+    }
+    else
+        return QFileInfo(file).fileName();
 }

@@ -235,6 +235,8 @@ void MainWindow::stop()
     playing = false;
     stopped = true;
     paused = false;
+    vwidget->hide();
+    listwidget->show();
     pb->bplaypause->setIcon(QIcon(":/icons/1359894848_playback_play.png"));
 }
 
