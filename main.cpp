@@ -1,10 +1,12 @@
-#include "mainwindow.h"
+
+
+#include "mainwindow/mainwindow.h"
 #include <QApplication>
 #include <QFileInfo>
 #include <QDir>
 #include <QFile>
 #include <QDebug>
-#include "playlist.h"
+#include "playlist/playlist.h"
 
 bool ifplay = true;
 

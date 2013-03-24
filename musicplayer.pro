@@ -17,18 +17,23 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-           mainwindow.cpp \
-           playbar.cpp \
-           qtwin.cpp \
-    playlistgenerator.cpp \
-    playlist.cpp
+           mainwindow/mainwindow.cpp \
+           playbar/playbar.cpp \
+           qtwin/qtwin.cpp \
+           playlistgenerator/playlistgenerator.cpp \
+           playlist/playlist.cpp \
+    mainwindow/class.cpp \
+    mainwindow/ui.cpp \
+    mainwindow/open.cpp \
+    mainwindow/play.cpp \
+    mainwindow/pb.cpp
 
-HEADERS  += mainwindow.h \
-            playbar.h \
-            qtwin.h \
-    playlistgenerator.h \
-    playlist.h \
-    version.h
+HEADERS  += mainwindow/mainwindow.h \
+            playbar/playbar.h \
+            qtwin/qtwin.h \
+            playlistgenerator/playlistgenerator.h \
+            playlist/playlist.h \
+            version.h
 
 RESOURCES += \
     icons.qrc

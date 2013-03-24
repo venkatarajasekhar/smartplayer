@@ -26,24 +26,25 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef PLAYLIST_H
+#define PLAYLIST_H
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+#include <QWidget>
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
+class Playlist
+{
+    Q_GADGET
+public:
+    Playlist(QString file = QString());
+    Playlist(QStringList files = QStringList());
+    void get(QString file);
+    void get(QStringList files);
+    QStringList getPathList();
+    QStringList getNameList();
+    static QString convert(QString file);
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
+protected:
+    QStringList list;
+};
 
-#endif // VERSION_H
+#endif // PLAYLIST_H

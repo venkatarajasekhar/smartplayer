@@ -26,24 +26,45 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#include "mainwindow.h"
+#include <QVBoxLayout>
+#include <QFileInfo>
+#include <QDebug>
+#include <QFileDialog>
+#include <QID3/id3_mp3_frame.h>
+#include "playlist/playlist.h"
+#include "playlistgenerator/playlistgenerator.h"
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+void MainWindow::addFile(QString path)
+{
+    list.append(path);
+    listwidget->addItem(Playlist::convert(path));
+}
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
+void MainWindow::addFiles(QStringList files)
+{
+    list = list + files;
+    listwidget->addItems(Playlist(files).getNameList());
+}
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
+void MainWindow::setPlaylist(QStringList files)
+{
+    count = 0;
+    list = files;
+    listwidget->clear();
+    listwidget->addItems(Playlist(files).getNameList());
+}
 
-#endif // VERSION_H
+void MainWindow::enqueue()
+{
+    count++;
+    if(count >= list.count())
+        count = 0;
+    else
+        media->enqueue(Phonon::MediaSource(list[count]));
+}
+
+void MainWindow::playlistClicked(QModelIndex model)
+{
+    play(model.row());
+}

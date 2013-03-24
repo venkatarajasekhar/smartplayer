@@ -26,24 +26,39 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef PLAYBAR_H
+#define PLAYBAR_H
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+#include <QWidget>
+#include <QToolButton>
+#include <Phonon/SeekSlider>
+#include <Phonon/VolumeSlider>
+#include <Phonon/AudioOutput>
+#include <Phonon/MediaObject>
+#include <QLabel>
+#include <QDebug>
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
+class Playbar : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit Playbar(Phonon::MediaObject *mobject, Phonon::AudioOutput *audio, QWidget *parent = 0);
+    QToolButton *bplaypause;
+    QToolButton *bstop;
+    QToolButton *bback;
+    QToolButton *bnext;
+    QToolButton *bopen;
+    QToolButton *bcreate;
+    QLabel *lvolume;
+    
+signals:
+    
+public slots:
+    void volumechanged(qreal s);
+    
+private:
+    Phonon::SeekSlider *sslider;
+    Phonon::VolumeSlider *vslider;
+};
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
-
-#endif // VERSION_H
+#endif // PLAYBAR_H

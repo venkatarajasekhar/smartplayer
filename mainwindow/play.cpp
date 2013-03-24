@@ -26,24 +26,44 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#include "mainwindow.h"
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+void MainWindow::play(QString path)
+{
+    hideandshow(path);
+    media->setCurrentSource(Phonon::MediaSource(path));
+    media->play();
+    playing = true;
+    paused = false;
+    stopped = false;
+    pb->bplaypause->setIcon(QIcon(":/icons/1359894848_playback_play.png"));
+    listwidget->setCurrentRow(count);
+}
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
+void MainWindow::play()
+{
+    if(list.count()==0)
+        return;
+    hideandshow(list[count]);
+    media->setCurrentSource(Phonon::MediaSource(list[count]));
+    media->play();
+    playing = true;
+    paused = false;
+    stopped = false;
+    pb->bplaypause->setIcon(QIcon(":/icons/1359894848_playback_play.png"));
+    listwidget->setCurrentRow(count);
+}
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
-
-#endif // VERSION_H
+void MainWindow::play(int i)
+{
+    if(list.count()<=i)
+        return;
+    hideandshow(list[count = i]);
+    media->setCurrentSource(Phonon::MediaSource(list[i]));
+    media->play();
+    playing = true;
+    paused = false;
+    stopped = false;
+    pb->bplaypause->setIcon(QIcon(":/icons/1359894848_playback_play.png"));
+    listwidget->setCurrentRow(count);
+}

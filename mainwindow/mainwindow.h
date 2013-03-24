@@ -26,24 +26,64 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+#include <QMainWindow>
+#include <Phonon/VideoWidget>
+#include <Phonon/MediaObject>
+#include <Phonon/AudioOutput>
+#include <QListWidget>
+#include "playbar/playbar.h"
+#include <QIcon>
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
+static QIcon mainIcon()
+{
+    QIcon s;
+    s.addFile(":/icons/1363519519_headphones.png", QSize(16, 16));
+    s.addFile(":/icons/1363519518_headphones.png", QSize(32, 32));
+    s.addFile(":/icons/1363519515_headphones.png", QSize(48, 48));
+    return s;
+}
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+    
+public:
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
+    void Make();
 
-#endif // VERSION_H
+public slots:
+    void play(QString path);
+    void play();
+    void play(int i);
+    void addFile(QString path);
+    void addFiles(QStringList files);
+    void setPlaylist(QStringList files);
+    void enqueue();
+    void playpause();
+    void stop();
+    void next();
+    void back();
+    void playlistClicked(QModelIndex model);
+    void open();
+    void openFolder();
+    void pN();
+
+private:
+    bool playing;
+    bool paused;
+    bool stopped;
+    void hideandshow(QString path);
+    Playbar *pb;
+    Phonon::MediaObject *media;
+    Phonon::VideoWidget *vwidget;
+    Phonon::AudioOutput *audio;
+    QListWidget *listwidget;
+    QStringList list;
+    int count;
+};
+
+#endif // MAINWINDOW_H

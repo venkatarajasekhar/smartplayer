@@ -26,24 +26,26 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef VERSION_H
-#define VERSION_H
+#include "mainwindow.h"
+#include "qtwin/qtwin.h"
 
-#define SP_VERSION            0x010000
-#define SP_MAJOR              0
-#define SP_MINOR              1
-#define SP_REV                0
-#define SP_BUILD              400
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+{
+#ifdef Q_WS_WIN
+    if (QtWin::isCompositionEnabled()) {
+        QtWin::extendFrameIntoClientArea(this);
+        this->setContentsMargins(0, 0, 0, 0);
+    }
+#endif
+    playing = false;
+    stopped = true;
+    paused = false;
+    Make();
+}
 
-#define SP_FileVersion        "0.1.0.400"
-#define SP_String             "SmartPlayer 1.0.0 Alpha 1 (0.1.0.400)"
-#define SP_ProductVersion     "1.0.0 Alpha 1 (0.1.0.400)"
 
-#define SP_CompanyName        "Felipe Cabrera"
-#define SP_FileDescription    "Reproductor Multimedia SmartPlayer"
-#define SP_InternalName       "smartplayer"
-#define SP_LegalCopyright     "Copyright 2012 Felipe Cabrera"
-#define SP_OriginalFilename   "smartplayer.exe"
-#define SP_ProductName        "SmartPlayer"
+MainWindow::~MainWindow()
+{
 
-#endif // VERSION_H
+}
