@@ -26,14 +26,40 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "playlist.h"
+#include "mainwindow.h"
+#include "playlist/playlist.h"
+#include "playlistgenerator/playlistgenerator.h"
 
-Playlist::Playlist(QString file)
+void MainWindow::addFile(QString path)
 {
-    get(file);
+    list.append(path);
+    listwidget->addItem(Playlist::convert(path));
 }
 
-Playlist::Playlist(QStringList files)
+void MainWindow::addFiles(QStringList files)
 {
-    get(files);
+    list = list + files;
+    listwidget->addItems(Playlist(files).getNameList());
+}
+
+void MainWindow::setPlaylist(QStringList files)
+{
+    count = 0;
+    list = files;
+    listwidget->clear();
+    listwidget->addItems(Playlist(files).getNameList());
+}
+
+void MainWindow::enqueue()
+{
+    count++;
+    if(count >= list.count())
+        count = 0;
+    else
+        media->enqueue(Phonon::MediaSource(list[count]));
+}
+
+void MainWindow::playlistClicked(QModelIndex model)
+{
+    play(model.row());
 }

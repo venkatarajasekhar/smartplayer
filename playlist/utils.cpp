@@ -27,13 +27,20 @@
  */
 
 #include "playlist.h"
+#include <QFileInfo>
+#include <QID3/id3_mp3_frame.h>
 
-Playlist::Playlist(QString file)
+QString Playlist::convert(QString file)
 {
-    get(file);
-}
-
-Playlist::Playlist(QStringList files)
-{
-    get(files);
+    if(QFileInfo(file).suffix() == "mp3" ||
+       QFileInfo(file).suffix() == "wma" ||
+       QFileInfo(file).suffix() == "ogg" ||
+       QFileInfo(file).suffix() == "MP3" ||
+       QFileInfo(file).suffix() == "WMA" ||
+       QFileInfo(file).suffix() == "OGG") {
+        ID3_MP3_Frame frame(file);
+        return (frame.getArtist() + " - " + frame.getTitle());
+    }
+    else
+        return QFileInfo(file).fileName();
 }

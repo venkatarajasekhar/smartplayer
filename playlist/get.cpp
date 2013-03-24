@@ -26,26 +26,39 @@
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "mainwindow.h"
-#include "qtwin/qtwin.h"
+#include "playlist.h"
+#include <QFileInfo>
+#include <QFile>
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+void Playlist::get(QString file)
 {
-#ifdef Q_WS_WIN
-    if (QtWin::isCompositionEnabled()) {
-        QtWin::extendFrameIntoClientArea(this);
-        this->setContentsMargins(0, 0, 0, 0);
+    QFile f(file);
+    QStringList l;
+    QStringList l2;
+    QFileInfo fi(file);
+    if(f.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        l = QString(f.readAll()).split(QRegExp("\n"));
+        f.close();
     }
-#endif
-    playing = false;
-    stopped = true;
-    paused = false;
-    Make();
+    for(int d = 0; d < l.count(); d++)
+         l2 << (fi.absoluteDir().absoluteFilePath(l[d]));
+    list = l2;
 }
 
-
-MainWindow::~MainWindow()
+void Playlist::get(QStringList files)
 {
+    list = files;
+}
 
+QStringList Playlist::getPathList()
+{
+    return list;
+}
+
+QStringList Playlist::getNameList()
+{
+    QStringList parsedlist;
+    for(int i = 0; i < list.count(); i++)
+        parsedlist << convert(list[i]);
+    return parsedlist;
 }

@@ -27,44 +27,25 @@
  */
 
 #include "mainwindow.h"
-#include <QVBoxLayout>
-#include <QFileInfo>
-#include <QDebug>
-#include <QFileDialog>
-#include <QID3/id3_mp3_frame.h>
-#include "playlist/playlist.h"
-#include "playlistgenerator/playlistgenerator.h"
+#include "qtwin/qtwin.h"
 
-void MainWindow::addFile(QString path)
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
 {
-    list.append(path);
-    listwidget->addItem(Playlist::convert(path));
+#ifdef Q_WS_WIN
+    if (QtWin::isCompositionEnabled()) {
+        QtWin::extendFrameIntoClientArea(this);
+        this->setContentsMargins(0, 0, 0, 0);
+    }
+#endif
+    playing = false;
+    stopped = true;
+    paused = false;
+    Make();
 }
 
-void MainWindow::addFiles(QStringList files)
-{
-    list = list + files;
-    listwidget->addItems(Playlist(files).getNameList());
-}
 
-void MainWindow::setPlaylist(QStringList files)
+MainWindow::~MainWindow()
 {
-    count = 0;
-    list = files;
-    listwidget->clear();
-    listwidget->addItems(Playlist(files).getNameList());
-}
 
-void MainWindow::enqueue()
-{
-    count++;
-    if(count >= list.count())
-        count = 0;
-    else
-        media->enqueue(Phonon::MediaSource(list[count]));
-}
-
-void MainWindow::playlistClicked(QModelIndex model)
-{
-    play(model.row());
 }
