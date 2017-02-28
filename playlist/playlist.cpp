@@ -27,13 +27,13 @@
  */
 
 #include "playlist.h"
-
+using namespace std;
 Playlist::Playlist(QString file)
 {
-    get(file);
+    cin.get(file);
 }
 
 Playlist::Playlist(QStringList files)
 {
-    get(files);
+    cin.get(files);
 }
